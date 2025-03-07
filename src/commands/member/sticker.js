@@ -1,8 +1,11 @@
-const { PREFIX, TEMP_DIR } = require("../../config");
-const { InvalidParameterError } = require("../../errors/InvalidParameterError");
+const { PREFIX, TEMP_DIR } = require(`${BASE_DIR}/config`);
+const {
+  InvalidParameterError,
+} = require(`${BASE_DIR}/errors/InvalidParameterError`);
 const path = require("path");
 const fs = require("fs");
 const { exec } = require("child_process");
+const { getRandomNumber } = require(`${BASE_DIR}/utils`);
 
 module.exports = {
   name: "sticker",
@@ -17,6 +20,7 @@ module.exports = {
     webMessage,
     sendErrorReply,
     sendSuccessReact,
+    sendWaitReact,
     sendStickerFromFile,
   }) => {
     if (!isImage && !isVideo) {
@@ -25,7 +29,12 @@ module.exports = {
       );
     }
 
-    const outputPath = path.resolve(TEMP_DIR, "output.webp");
+    await sendWaitReact();
+
+    const outputPath = path.resolve(
+      TEMP_DIR,
+      `${getRandomNumber(10_000, 99_999)}.webp`
+    );
 
     if (isImage) {
       const inputPath = await downloadImage(webMessage, "input");
@@ -42,9 +51,6 @@ module.exports = {
           await sendSuccessReact();
 
           await sendStickerFromFile(outputPath);
-
-          fs.unlinkSync(inputPath);
-          fs.unlinkSync(outputPath);
         }
       );
     } else {
@@ -81,9 +87,6 @@ Envie um vídeo menor!`);
 
           await sendSuccessReact();
           await sendStickerFromFile(outputPath);
-
-          fs.unlinkSync(inputPath);
-          fs.unlinkSync(outputPath);
         }
       );
     }

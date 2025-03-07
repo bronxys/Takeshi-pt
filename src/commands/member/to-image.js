@@ -1,8 +1,11 @@
-const { PREFIX, TEMP_DIR } = require("../../config");
+const { PREFIX, TEMP_DIR } = require(`${BASE_DIR}/config`);
 const fs = require("fs");
 const path = require("path");
 const { exec } = require("child_process");
-const { InvalidParameterError } = require("../../errors/InvalidParameterError");
+const {
+  InvalidParameterError,
+} = require(`${BASE_DIR}/errors/InvalidParameterError`);
+const { getRandomNumber } = require(`${BASE_DIR}/utils`);
 
 module.exports = {
   name: "toimage",
@@ -13,14 +16,21 @@ module.exports = {
     isSticker,
     downloadSticker,
     webMessage,
+    sendWaitReact,
+    sendSuccessReact,
     sendImageFromFile,
   }) => {
     if (!isSticker) {
       throw new InvalidParameterError("Você precisa enviar uma figurinha!");
     }
 
+    await sendWaitReact();
+
     const inputPath = await downloadSticker(webMessage, "input");
-    const outputPath = path.resolve(TEMP_DIR, "output.png");
+    const outputPath = path.resolve(
+      TEMP_DIR,
+      `${getRandomNumber(10_000, 99_999)}.png`
+    );
 
     exec(`ffmpeg -i ${inputPath} ${outputPath}`, async (error) => {
       if (error) {
@@ -28,10 +38,9 @@ module.exports = {
         throw new Error(error);
       }
 
-      await sendImageFromFile(outputPath);
+      await sendSuccessReact();
 
-      fs.unlinkSync(inputPath);
-      fs.unlinkSync(outputPath);
+      await sendImageFromFile(outputPath);
     });
   },
 };

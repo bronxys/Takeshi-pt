@@ -1,3 +1,8 @@
+/**
+ * Mensagens do bot
+ *
+ * @author Dev Gui
+ */
 const { BOT_NAME, PREFIX } = require("../config");
 
 exports.waitMessage = "Carregando dados...";
@@ -36,6 +41,7 @@ exports.menuMessage = () => {
 ▢ • ${PREFIX}attp
 ▢ • ${PREFIX}cep
 ▢ • ${PREFIX}gpt-4
+▢ • ${PREFIX}ia-sticker
 ▢ • ${PREFIX}image
 ▢ • ${PREFIX}ping
 ▢ • ${PREFIX}play-audio
