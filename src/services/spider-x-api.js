@@ -1,3 +1,9 @@
+/**
+ * Funções de comunicação
+ * com a API do Spider X.
+ *
+ * @author Dev Gui
+ */
 const axios = require("axios");
 
 const { SPIDER_API_TOKEN, SPIDER_API_BASE_URL } = require("../config");
@@ -87,4 +93,22 @@ exports.welcome = async (text, description, imageURL) => {
   )}&description=${encodeURIComponent(
     description
   )}&image_url=${encodeURIComponent(imageURL)}&api_key=${SPIDER_API_TOKEN}`;
+};
+
+exports.stableDiffusion = async (description) => {
+  if (!description) {
+    throw new Error("Você precisa informar a descrição da imagem!");
+  }
+
+  if (!SPIDER_API_TOKEN || SPIDER_API_TOKEN === "seu_token_aqui") {
+    throw new Error("Token da API do Spider X não configurado");
+  }
+
+  const { data } = await axios.get(
+    `${SPIDER_API_BASE_URL}/ai/stable-diffusion-turbo?search=${encodeURIComponent(
+      description
+    )}&api_key=${SPIDER_API_TOKEN}`
+  );
+
+  return data;
 };

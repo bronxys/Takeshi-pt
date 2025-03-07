@@ -9,11 +9,13 @@ exports.BOT_EMOJI = "🤖";
 // Nome do bot (mude se preferir).
 exports.BOT_NAME = "Takeshi Bot";
 
-// Número do bot. Coloque o número do bot (apenas números).
-exports.BOT_NUMBER = "5511920202020";
+// Número do bot. Coloque o número do bot
+// (apenas números, exatamente como está no WhatsApp).
+exports.BOT_NUMBER = "559999999999";
 
-// Número do dono do bot. Coloque o número do dono do bot (apenas números).
-exports.OWNER_NUMBER = "5511999999999";
+// Número do dono do bot. Coloque o número do dono do bot
+// (apenas números, exatamente como está no WhatsApp).
+exports.OWNER_NUMBER = "559999999999";
 
 // Diretório dos comandos
 exports.COMMANDS_DIR = path.join(__dirname, "commands");
@@ -35,3 +37,6 @@ exports.SPIDER_API_TOKEN = "seu_token_aqui";
 
 // Caso queira responder apenas um grupo específico, coloque o ID dele aqui (ex: 120363023799506419@g.us). Apenas para testes internos!
 exports.ONLY_GROUP_ID = "";
+
+// Diretório base do projeto.
+exports.BASE_DIR = path.resolve(__dirname);
