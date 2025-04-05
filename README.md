@@ -8,7 +8,7 @@
 
 <div align="center">
     <a href="https://github.com/guiireal/takeshi-bot">
-        <img alt="Version" src="https://img.shields.io/badge/Vers%C3%A3o-3.2.0-blue">
+        <img alt="Version" src="https://img.shields.io/badge/Vers%C3%A3o-3.3.0-blue">
     </a>
 </div>
 
@@ -25,7 +25,7 @@
 - [Axios](https://axios-http.com/ptbr/docs/intro)
 - [Baileys 6.7.16](https://github.com/WhiskeySockets/Baileys)
 - [FFMPEG](https://ffmpeg.org/)
-- [Node.js >= 22.14.0](https://nodejs.org/en)
+- [Node.js >= 22.14.1](https://nodejs.org/en)
 - [Spider X API](https://api.spiderx.com.br)
 
 ## ⚠ Atenção
