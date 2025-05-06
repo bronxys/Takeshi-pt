@@ -3,8 +3,11 @@
  *
  * @author Dev Gui
  */
-const { PREFIX, OWNER_NUMBER } = require("../config");
+const { PREFIX, BOT_NUMBER, OWNER_NUMBER } = require("../config");
 const { toUserJid } = require("../utils");
+const { errorLog } = require("../utils/logger");
+
+const botId = `${BOT_NUMBER}@s.whatsapp.net`;
 
 exports.verifyPrefix = (prefix) => PREFIX === prefix;
 exports.hasTypeOrCommand = ({ type, command }) => type && command;
@@ -33,4 +36,29 @@ exports.isAdmin = async ({ remoteJid, userJid, socket }) => {
   const isAdmin = participant.admin === "admin";
 
   return isOwner || isAdmin;
+};
+
+exports.isBotAdmin = async ({ remoteJid, socket }) => {
+  try {
+    const { participants } = await socket.groupMetadata(remoteJid);
+
+    const botParticipant = participants.find(
+      (participant) => participant.id === botId
+    );
+
+    if (!botParticipant) {
+      return false;
+    }
+
+    const isBotAdmin =
+      botParticipant.admin === "admin" || botParticipant.admin === "superadmin";
+
+    return isBotAdmin;
+  } catch (error) {
+    errorLog(
+      `Erro ao verificar se o bot é administrador no grupo ${remoteJid}: ${error.message}`
+    );
+
+    return false;
+  }
 };

@@ -9,7 +9,7 @@
 const { BOT_EMOJI } = require("../config");
 const { extractDataFromMessage, baileysIs, download } = require(".");
 const { waitMessage } = require("./messages");
-const fs = require("fs");
+const fs = require("node:fs");
 
 exports.loadCommonFunctions = ({ socket, webMessage }) => {
   const {
