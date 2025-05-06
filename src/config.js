@@ -11,16 +11,19 @@ exports.BOT_NAME = "Takeshi Bot";
 
 // Número do bot. Coloque o número do bot
 // (apenas números, exatamente como está no WhatsApp).
-// Se o seu DDD não for de SP ou do RJ, não coloque o 9 antes do número.
+// Se o seu DDD não for de SP ou do Rio, não coloque o 9 antes do número.
 exports.BOT_NUMBER = "558112345678";
 
 // Número do dono do bot. Coloque o número do dono do bot
 // (apenas números, exatamente como está no WhatsApp).
-// Se o seu DDD não for de SP ou do RJ, não coloque o 9 antes do número.
+// Se o seu DDD não for de SP ou do Rio, não coloque o 9 antes do número.
 exports.OWNER_NUMBER = "5521950502020";
 
 // Diretório dos comandos
 exports.COMMANDS_DIR = path.join(__dirname, "commands");
+
+// Diretório de arquivos de mídia.
+exports.DATABASE_DIR = path.resolve(__dirname, "..", "database");
 
 // Diretório de arquivos de mídia.
 exports.ASSETS_DIR = path.resolve(__dirname, "..", "assets");
