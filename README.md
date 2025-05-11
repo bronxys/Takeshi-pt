@@ -8,7 +8,7 @@
 
 <div align="center">
     <a href="https://github.com/guiireal/takeshi-bot">
-        <img alt="Version" src="https://img.shields.io/badge/Vers%C3%A3o-3.6.1-blue">
+        <img alt="Version" src="https://img.shields.io/badge/Vers%C3%A3o-3.7.0-blue">
     </a>
 </div>
 
@@ -271,17 +271,22 @@ exports.SPIDER_API_TOKEN = "seu_token_aqui";
 | ------------ | --- | --- | ---
 | Desligar o bot no grupo | ✅ | Dono | ❌
 | Ligar o bot no grupo | ✅ | Dono | ❌
+| Obter o ID do grupo | ✅ | Dono | ❌
 | Anti link | ✅ | Admin | ❌
 | Banir membros | ✅ | Admin | ❌
 | Ligar/desligar auto responder | ✅ | Admin | ❌
 | Ligar/desligar boas vindas | ✅ | Admin | ❌
 | Ligar/desligar saída de grupo | ✅ | Admin | ❌
+| Limpar chat | ✅ | Admin | ❌
 | Marcar todos | ✅ | Admin | ❌
+| Mudar nome do grupo | ✅ | Admin | ❌
+| Revelar | ✅ | Admin | ❌
 | Busca CEP | ✅ | Membro | ❌
 | Canvas Bolsonaro | ✅ | Membro | ✅
 | Canvas cadeia | ✅ | Membro | ✅
 | Canvas inverter | ✅ | Membro | ✅
 | Canvas RIP | ✅ | Membro | ✅
+| Comandos de diversão/brincadeiras | ✅ | Membro | ✅
 | Figurinha de texto animada | ✅ | Membro | ✅
 | Geração de imagens com IA | ✅ | Membro | ❌
 | Google search | ✅ | Membro | ✅
