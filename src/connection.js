@@ -25,8 +25,6 @@ const {
   isJidBroadcast,
   makeCacheableSignalKeyStore,
   isJidStatusBroadcast,
-  proto,
-  makeInMemoryStore,
   isJidNewsletter,
 } = require("baileys");
 const pino = require("pino");
@@ -41,10 +39,6 @@ const {
 const NodeCache = require("node-cache");
 const { TEMP_DIR } = require("./config");
 
-const store = makeInMemoryStore({
-  logger: pino().child({ level: "silent", stream: "store" }),
-});
-
 const msgRetryCounterCache = new NodeCache();
 
 const logger = pino(
@@ -53,16 +47,6 @@ const logger = pino(
 );
 
 logger.level = "error";
-
-async function getMessage(key) {
-  if (!store) {
-    return proto.Message.fromObject({});
-  }
-
-  const msg = await store.loadMessage(key.remoteJid, key.id);
-
-  return msg ? msg.message : undefined;
-}
 
 async function connect(groupCache) {
   const baileysFolder = path.resolve(
@@ -93,7 +77,6 @@ async function connect(groupCache) {
     syncFullHistory: false,
     msgRetryCounterCache,
     shouldSyncHistoryMessage: () => false,
-    getMessage,
     cachedGroupMetadata: async (jid) => groupCache.get(jid),
   });
 
