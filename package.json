@@ -13,7 +13,7 @@
   "dependencies": {
     "@cacheable/node-cache": "^1.5.3",
     "axios": "^1.7.7",
-    "baileys": "6.7.16",
+    "baileys": "^6.7.17",
     "correios-brasil": "^3.0.6",
     "node-cache": "^5.1.2",
     "node-catbox": "^3.3.0",
