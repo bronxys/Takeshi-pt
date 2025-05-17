@@ -25,6 +25,7 @@ const {
   isJidBroadcast,
   makeCacheableSignalKeyStore,
   isJidStatusBroadcast,
+  proto,
   isJidNewsletter,
 } = require("baileys");
 const pino = require("pino");
