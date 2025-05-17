@@ -1,4 +1,3 @@
-export {};
 declare global {
   /** Caminho base do projeto, usado para imports. */
   const BASE_DIR: string;
