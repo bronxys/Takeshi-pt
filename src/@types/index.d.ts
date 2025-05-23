@@ -89,7 +89,7 @@ declare global {
     /**
      * Informações detalhadas da mensagem do WhatsApp.
      */
-    webMessageInfo: any;
+    webMessage: any;
 
     /**
      * Faz download de uma imagem da mensagem atual.
