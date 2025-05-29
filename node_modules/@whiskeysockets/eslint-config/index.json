@@ -42,22 +42,6 @@
                 "ignoreRestArgs": true
             }
         ],
-        "@typescript-eslint/type-annotation-spacing": [
-            "error"
-        ],
-        "@typescript-eslint/member-delimiter-style": [
-            "error",
-            {
-                "multiline": {
-                    "delimiter": "none",
-                    "requireLast": false
-                },
-                "singleline": {
-                    "delimiter": "comma",
-                    "requireLast": false
-                }
-            }
-        ],
         "@typescript-eslint/no-unused-vars": [
             "error"
         ],
