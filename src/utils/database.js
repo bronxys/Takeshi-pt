@@ -239,13 +239,13 @@ exports.isActiveExitGroup = (groupId) => {
 exports.muteMember = (groupId, memberId) => {
   const filename = MUTE_FILE;
 
-  const mutedMembers = readJSON(filename, "{}");
+  const mutedMembers = readJSON(filename, JSON.stringify({}));
 
   if (!mutedMembers[groupId]) {
     mutedMembers[groupId] = [];
   }
 
-  if (!mutedMembers[groupId].includes(memberId)) {
+  if (!mutedMembers[groupId]?.includes(memberId)) {
     mutedMembers[groupId].push(memberId);
   }
 
@@ -255,7 +255,7 @@ exports.muteMember = (groupId, memberId) => {
 exports.unmuteMember = (groupId, memberId) => {
   const filename = MUTE_FILE;
 
-  const mutedMembers = readJSON(filename, "{}");
+  const mutedMembers = readJSON(filename, JSON.stringify({}));
 
   if (!mutedMembers[groupId]) {
     return;
@@ -273,7 +273,7 @@ exports.unmuteMember = (groupId, memberId) => {
 exports.checkIfMemberIsMuted = (groupId, memberId) => {
   const filename = MUTE_FILE;
 
-  const mutedMembers = readJSON(filename, "{}");
+  const mutedMembers = readJSON(filename, JSON.stringify({}));
 
   if (!mutedMembers[groupId]) {
     return false;
