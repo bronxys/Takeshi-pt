@@ -3,7 +3,7 @@
  *
  * @author Dev Gui
  */
-const { PREFIX, OWNER_NUMBER } = require("../config");
+const { PREFIX, OWNER_NUMBER, OWNER_LID } = require("../config");
 const { toUserJid } = require("../utils");
 
 exports.verifyPrefix = (prefix) => PREFIX === prefix;
@@ -44,4 +44,8 @@ exports.isAdmin = async ({ remoteJid, userJid, socket }) => {
   const isAdmin = participant.admin === "admin";
 
   return isOwner || isAdmin;
+};
+
+exports.isBotOwner = ({ userJid, isLid }) => {
+  return isLid ? userJid === OWNER_LID : userJid === toUserJid(OWNER_NUMBER);
 };
