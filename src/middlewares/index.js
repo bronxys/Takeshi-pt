@@ -18,7 +18,8 @@ exports.isLink = (text) => {
   } catch (error) {
     try {
       const url = new URL("https://" + cleanText);
-      return url.hostname.includes(".");
+
+      return url.hostname.length > 4 && url.hostname.includes(".");
     } catch (error) {
       return false;
     }

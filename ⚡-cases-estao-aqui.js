@@ -39,7 +39,7 @@
  * ---------------- 🤖 ONDE MODIFICO O MENU? 🤖 ----------------
  *
  * Abra a pasta "src" e depois na pasta "utils"
- * Vá no arquivo "messages.js" e edite o retorno da função "menuMessage"!
+ * Vá no arquivo "menu.js" e edite o retorno da função "menuMessage"!
  * Só lembrando, faça tudo dentro das crases (`), pois é um template string!
  *
  * Não entendeu?
