@@ -8,7 +8,7 @@
 
 <div align="center">
     <a href="https://github.com/guiireal/takeshi-bot">
-        <img alt="Version" src="https://img.shields.io/badge/Vers%C3%A3o-5.5.0-blue">
+        <img alt="Version" src="https://img.shields.io/badge/Vers%C3%A3o-5.6.0-blue">
     </a>
 </div>
 
@@ -49,8 +49,9 @@
 10. [Estrutura de pastas](#estrutura-de-pastas)
 11. [Erros comuns](#erros-comuns)
 12. [Canal do YouTube](#inscreva-se-no-canal)
-13. [Licença](#licença)
-14. [Disclaimer](#-disclaimer)
+13. [Contribuindo com o projeto](#contribuindo-com-o-projeto)
+14. [Licença](#licença)
+15. [Disclaimer](#-disclaimer)
 
 ## 🌐 Acesse o Takeshi Bot em outros idiomas
 
@@ -178,10 +179,10 @@ As principais hosts já oferecem o Takeshi como **bot padrão**, não sendo nece
 
 **Hosts suportadas**:
 
-| Bronxys |
-|---------|
-| [Grupo oficial](https://chat.whatsapp.com/J5OewHvweK1Kf7RGXAwIYM) |
-| [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) |
+| Bronxys | Nexfuture | Speed Cloud |
+|---------|-------------|-------------|
+| [Grupo oficial](https://chat.whatsapp.com/J5OewHvweK1Kf7RGXAwIYM) | [Grupo oficial](https://chat.whatsapp.com/Fl5FzZQC00J5CZp07AZVwQ?mode=r_c) | [Grupo oficial](https://chat.whatsapp.com/HsZDn6DJrx34z5lbNbNB2M) |
+| [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) | [![Nexfuture](./assets/images/nexfuture.png)](https://speedhosting.cloud/) | [![Speed Cloud](./assets/images/speed-cloud.png)](https://speedhosting.cloud/) |
 
 ## Instalação em VPS (Debian/Ubuntu)
 
@@ -364,6 +365,7 @@ exports.SPIDER_API_TOKEN = "seu_token_aqui";
 | Marcar todos | Admin | ❌
 | Mudar nome do grupo | Admin | ❌
 | Mute/unmute | Admin | ❌
+| Obter o link do grupo | Admin | ❌
 | Revelar | Admin | ❌
 | Somente admins | Admin | ❌
 | Borrar imagem | Membro | ❌
@@ -688,6 +690,23 @@ Você deve apagar um dos bots e tanto configurar quanto executar **apenas um**
 ## Inscreva-se no canal!
 
 <a href="https://www.youtube.com/@devgui_?sub_confirmation=1" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube"></a>
+
+## Contribuindo com o projeto
+
+O Takeshi Bot é um projeto **open source** e sua contribuição é muito bem-vinda! 
+
+### 🚀 Como contribuir
+
+- 🐛 **Reportar bugs** através das [Issues](https://github.com/guiireal/takeshi-bot/issues)
+- ✨ **Sugerir novas funcionalidades** 
+- 🔧 **Contribuir com código** (novos comandos, correções, melhorias)
+- ⭐ **Dar uma estrela** no repositório
+
+### 📖 Antes de contribuir
+
+1. Leia nosso **[Guia de Contribuição](CONTRIBUTING.md)** completo
+2. Verifique as [Issues abertas](https://github.com/guiireal/takeshi-bot/issues) 
+3. Siga o template obrigatório para Pull Requests
 
 ## Licença
 
