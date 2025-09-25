@@ -8,11 +8,11 @@ const { WarningError, InvalidParameterError } = require(`${BASE_DIR}/errors`);
 const { PREFIX } = require(`${BASE_DIR}/config`);
 
 module.exports = {
-  name: "anti-event",
+  name: "anti-audio",
   description:
-    "Ativa/desativa o recurso de anti-event no grupo, apagando a mensagem de evento se estiver ativo.",
-  commands: ["anti-event", "anti-evento", "anti-eventos"],
-  usage: `${PREFIX}anti-event (1/0)`,
+    "Ativa/desativa o recurso de anti-audio no grupo, apagando a mensagem de áudio se estiver ativo.",
+  commands: ["anti-audio", "anti-audios"],
+  usage: `${PREFIX}anti-audio (1/0)`,
   /**
    * @param {CommandHandleProps} props
    * @returns {Promise<void>}
@@ -28,33 +28,33 @@ module.exports = {
       );
     }
 
-    const antiEventOn = args[0] == "1";
-    const antiEventOff = args[0] == "0";
+    const antiAudioOn = args[0] == "1";
+    const antiAudioOff = args[0] == "0";
 
-    if (!antiEventOn && !antiEventOff) {
+    if (!antiAudioOn && !antiAudioOff) {
       throw new InvalidParameterError(
         "Você precisa digitar 1 ou 0 (ligar ou desligar)!"
       );
     }
 
     const hasActive =
-      antiEventOn && isActiveGroupRestriction(remoteJid, "anti-event");
+      antiAudioOn && isActiveGroupRestriction(remoteJid, "anti-audio");
 
     const hasInactive =
-      antiEventOff && !isActiveGroupRestriction(remoteJid, "anti-event");
+      antiAudioOff && !isActiveGroupRestriction(remoteJid, "anti-audio");
 
     if (hasActive || hasInactive) {
       throw new WarningError(
-        `O recurso de anti-event já está ${
-          antiEventOn ? "ativado" : "desativado"
+        `O recurso de anti-audio já está ${
+          antiAudioOn ? "ativado" : "desativado"
         }!`
       );
     }
 
-    updateIsActiveGroupRestriction(remoteJid, "anti-event", antiEventOn);
+    updateIsActiveGroupRestriction(remoteJid, "anti-audio", antiAudioOn);
 
-    const status = antiEventOn ? "ativado" : "desativado";
+    const status = antiAudioOn ? "ativado" : "desativado";
 
-    await sendSuccessReply(`Anti-event ${status} com sucesso!`);
+    await sendSuccessReply(`Anti-audio ${status} com sucesso!`);
   },
 };
