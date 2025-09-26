@@ -5,7 +5,11 @@ const {
   ONWER_LID,
 } = require(`${BASE_DIR}/config`);
 const { DangerError, InvalidParameterError } = require(`${BASE_DIR}/errors`);
-const { toUserOrGroupJid, onlyNumbers } = require(`${BASE_DIR}/utils`);
+const {
+  toUserOrGroupJid,
+  onlyNumbers,
+  toUserJid,
+} = require(`${BASE_DIR}/utils`);
 
 module.exports = {
   name: "ban",
