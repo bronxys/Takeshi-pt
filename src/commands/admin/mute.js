@@ -4,7 +4,7 @@
  *
  * @author Dev Gui
  */
-const { toUserJid, onlyNumbers } = require(`${BASE_DIR}/utils`);
+const { toUserOrGroupJid, onlyNumbers } = require(`${BASE_DIR}/utils`);
 const {
   checkIfMemberIsMuted,
   muteMember,
@@ -47,11 +47,7 @@ module.exports = {
       );
     }
 
-    const userId = replyJid
-      ? replyJid
-      : args?.[0]?.length > 14
-      ? `${args?.[0]?.replace("@", "")}@lid`
-      : args?.[0]?.replace("@", "") + "@s.whatsapp.net";
+    const userId = replyJid ? replyJid : toUserOrGroupJid(args[0]);
 
     const targetUserNumber = onlyNumbers(userId);
 
