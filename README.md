@@ -377,6 +377,7 @@ exports.SPIDER_API_TOKEN = "seu_token_aqui";
 | Obter o link do grupo | Admin | ❌
 | Revelar | Admin | ❌
 | Somente admins | Admin | ❌
+| Ver saldo | Admin | ❌
 | Borrar imagem | Membro | ❌
 | Busca CEP | Membro | ❌
 | Canvas Bolsonaro | Membro | ✅
@@ -692,7 +693,7 @@ Para resolver, siga o [tutorial de instalação via git clone](#termux-new-setup
 Caso dê algum erro na conexão, digite o seguinte comando:
 
 ```sh
-sh reset-qr-auth.sh
+bash reset-qr-auth.sh
 ```
 
 Depois, remova o dispositivo do WhatsApp indo nas configurações do WhatsApp em "dispositivos conectados" e repita
