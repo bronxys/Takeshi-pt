@@ -7,4 +7,3 @@ export declare class CiphertextMessage {
     readonly SENDERKEY_DISTRIBUTION_TYPE: number;
     readonly ENCRYPTED_MESSAGE_OVERHEAD: number;
 }
-//# sourceMappingURL=ciphertext-message.d.ts.map

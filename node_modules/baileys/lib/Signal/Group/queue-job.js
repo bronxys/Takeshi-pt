@@ -1,7 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = queueJob;
 const _queueAsyncBuckets = new Map();
 const _gcLimit = 10000;
 async function _asyncQueueExecutor(queue, cleanup) {
     let offt = 0;
+    // eslint-disable-next-line no-constant-condition
     while (true) {
         const limit = Math.min(queue.length, _gcLimit);
         for (let i = offt; i < limit; i++) {
@@ -28,7 +32,7 @@ async function _asyncQueueExecutor(queue, cleanup) {
     }
     cleanup();
 }
-export default function queueJob(bucket, awaitable) {
+function queueJob(bucket, awaitable) {
     // Skip name assignment since it's readonly in strict mode
     if (typeof bucket !== 'string') {
         console.warn('Unhandled bucket type (for naming):', typeof bucket, bucket);
@@ -51,4 +55,3 @@ export default function queueJob(bucket, awaitable) {
     }
     return job;
 }
-//# sourceMappingURL=queue-job.js.map

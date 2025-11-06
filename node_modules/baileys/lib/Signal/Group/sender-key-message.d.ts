@@ -1,4 +1,4 @@
-import { CiphertextMessage } from './ciphertext-message.js';
+import { CiphertextMessage } from './ciphertext-message';
 export declare class SenderKeyMessage extends CiphertextMessage {
     private readonly SIGNATURE_LENGTH;
     private readonly messageVersion;
@@ -16,4 +16,3 @@ export declare class SenderKeyMessage extends CiphertextMessage {
     serialize(): Uint8Array;
     getType(): number;
 }
-//# sourceMappingURL=sender-key-message.d.ts.map

@@ -1,13 +1,15 @@
-import { Boom } from '@hapi/boom';
-import { S_WHATSAPP_NET } from '../WABinary/index.js';
-import { USyncQuery } from '../WAUSync/index.js';
-import { makeSocket } from './socket.js';
-export const makeUSyncSocket = (config) => {
-    const sock = makeSocket(config);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.makeUSyncSocket = void 0;
+const boom_1 = require("@hapi/boom");
+const WABinary_1 = require("../WABinary");
+const socket_1 = require("./socket");
+const makeUSyncSocket = (config) => {
+    const sock = (0, socket_1.makeSocket)(config);
     const { generateMessageTag, query } = sock;
     const executeUSyncQuery = async (usyncQuery) => {
         if (usyncQuery.protocols.length === 0) {
-            throw new Boom('USyncQuery must have at least one protocol');
+            throw new boom_1.Boom('USyncQuery must have at least one protocol');
         }
         // todo: validate users, throw WARNING on no valid users
         // variable below has only validated users
@@ -34,7 +36,7 @@ export const makeUSyncSocket = (config) => {
         const iq = {
             tag: 'iq',
             attrs: {
-                to: S_WHATSAPP_NET,
+                to: WABinary_1.S_WHATSAPP_NET,
                 type: 'get',
                 xmlns: 'usync'
             },
@@ -60,4 +62,4 @@ export const makeUSyncSocket = (config) => {
         executeUSyncQuery
     };
 };
-//# sourceMappingURL=usync.js.map
+exports.makeUSyncSocket = makeUSyncSocket;

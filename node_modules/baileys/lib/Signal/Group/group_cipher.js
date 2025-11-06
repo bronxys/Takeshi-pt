@@ -1,17 +1,19 @@
-/* @ts-ignore */
-import { decrypt, encrypt } from 'libsignal/src/crypto.js';
-import queueJob from './queue-job.js';
-import { SenderKeyMessage } from './sender-key-message.js';
-import { SenderKeyName } from './sender-key-name.js';
-import { SenderKeyRecord } from './sender-key-record.js';
-import { SenderKeyState } from './sender-key-state.js';
-export class GroupCipher {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GroupCipher = void 0;
+const crypto_1 = require("libsignal/src/crypto");
+const queue_job_1 = __importDefault(require("./queue-job"));
+const sender_key_message_1 = require("./sender-key-message");
+class GroupCipher {
     constructor(senderKeyStore, senderKeyName) {
         this.senderKeyStore = senderKeyStore;
         this.senderKeyName = senderKeyName;
     }
     queueJob(awaitable) {
-        return queueJob(this.senderKeyName.toString(), awaitable);
+        return (0, queue_job_1.default)(this.senderKeyName.toString(), awaitable);
     }
     async encrypt(paddedPlaintext) {
         return await this.queueJob(async () => {
@@ -26,7 +28,7 @@ export class GroupCipher {
             const iteration = senderKeyState.getSenderChainKey().getIteration();
             const senderKey = this.getSenderKey(senderKeyState, iteration === 0 ? 0 : iteration + 1);
             const ciphertext = await this.getCipherText(senderKey.getIv(), senderKey.getCipherKey(), paddedPlaintext);
-            const senderKeyMessage = new SenderKeyMessage(senderKeyState.getKeyId(), senderKey.getIteration(), ciphertext, senderKeyState.getSigningKeyPrivate());
+            const senderKeyMessage = new sender_key_message_1.SenderKeyMessage(senderKeyState.getKeyId(), senderKey.getIteration(), ciphertext, senderKeyState.getSigningKeyPrivate());
             await this.senderKeyStore.storeSenderKey(this.senderKeyName, record);
             return senderKeyMessage.serialize();
         });
@@ -37,7 +39,7 @@ export class GroupCipher {
             if (!record) {
                 throw new Error('No SenderKeyRecord found for decryption');
             }
-            const senderKeyMessage = new SenderKeyMessage(null, null, null, null, senderKeyMessageBytes);
+            const senderKeyMessage = new sender_key_message_1.SenderKeyMessage(null, null, null, null, senderKeyMessageBytes);
             const senderKeyState = record.getSenderKeyState(senderKeyMessage.getKeyId());
             if (!senderKeyState) {
                 throw new Error('No session found to decrypt message');
@@ -73,7 +75,7 @@ export class GroupCipher {
     }
     async getPlainText(iv, key, ciphertext) {
         try {
-            return decrypt(key, ciphertext, iv);
+            return (0, crypto_1.decrypt)(key, ciphertext, iv);
         }
         catch (e) {
             throw new Error('InvalidMessageException');
@@ -84,11 +86,11 @@ export class GroupCipher {
             const ivBuffer = typeof iv === 'string' ? Buffer.from(iv, 'base64') : iv;
             const keyBuffer = typeof key === 'string' ? Buffer.from(key, 'base64') : key;
             const plaintextBuffer = typeof plaintext === 'string' ? Buffer.from(plaintext) : plaintext;
-            return encrypt(keyBuffer, plaintextBuffer, ivBuffer);
+            return (0, crypto_1.encrypt)(keyBuffer, plaintextBuffer, ivBuffer);
         }
         catch (e) {
             throw new Error('InvalidMessageException');
         }
     }
 }
-//# sourceMappingURL=group_cipher.js.map
+exports.GroupCipher = GroupCipher;

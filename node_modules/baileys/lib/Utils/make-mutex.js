@@ -1,4 +1,7 @@
-export const makeMutex = () => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.makeKeyedMutex = exports.makeMutex = void 0;
+const makeMutex = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let task = Promise.resolve();
     let taskTimeout;
@@ -10,7 +13,7 @@ export const makeMutex = () => {
                 try {
                     await task;
                 }
-                catch { }
+                catch (_a) { }
                 try {
                     // execute the current task
                     const result = await code();
@@ -26,15 +29,16 @@ export const makeMutex = () => {
         }
     };
 };
-export const makeKeyedMutex = () => {
+exports.makeMutex = makeMutex;
+const makeKeyedMutex = () => {
     const map = {};
     return {
         mutex(key, task) {
             if (!map[key]) {
-                map[key] = makeMutex();
+                map[key] = (0, exports.makeMutex)();
             }
             return map[key].mutex(task);
         }
     };
 };
-//# sourceMappingURL=make-mutex.js.map
+exports.makeKeyedMutex = makeKeyedMutex;

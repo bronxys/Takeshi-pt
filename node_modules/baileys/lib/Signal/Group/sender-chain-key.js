@@ -1,7 +1,9 @@
-/* @ts-ignore */
-import { calculateMAC } from 'libsignal/src/crypto.js';
-import { SenderMessageKey } from './sender-message-key.js';
-export class SenderChainKey {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SenderChainKey = void 0;
+const crypto_1 = require("libsignal/src/crypto");
+const sender_message_key_1 = require("./sender-message-key");
+class SenderChainKey {
     constructor(iteration, chainKey) {
         this.MESSAGE_KEY_SEED = Buffer.from([0x01]);
         this.CHAIN_KEY_SEED = Buffer.from([0x02]);
@@ -17,7 +19,7 @@ export class SenderChainKey {
         return this.iteration;
     }
     getSenderMessageKey() {
-        return new SenderMessageKey(this.iteration, this.getDerivative(this.MESSAGE_KEY_SEED, this.chainKey));
+        return new sender_message_key_1.SenderMessageKey(this.iteration, this.getDerivative(this.MESSAGE_KEY_SEED, this.chainKey));
     }
     getNext() {
         return new SenderChainKey(this.iteration + 1, this.getDerivative(this.CHAIN_KEY_SEED, this.chainKey));
@@ -26,7 +28,7 @@ export class SenderChainKey {
         return this.chainKey;
     }
     getDerivative(seed, key) {
-        return calculateMAC(key, seed);
+        return (0, crypto_1.calculateMAC)(key, seed);
     }
 }
-//# sourceMappingURL=sender-chain-key.js.map
+exports.SenderChainKey = SenderChainKey;

@@ -1,6 +1,8 @@
-import { assertNodeErrorFree } from '../../WABinary/index.js';
-import { USyncUser } from '../USyncUser.js';
-export class USyncContactProtocol {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.USyncContactProtocol = void 0;
+const WABinary_1 = require("../../WABinary");
+class USyncContactProtocol {
     constructor() {
         this.name = 'contact';
     }
@@ -19,11 +21,12 @@ export class USyncContactProtocol {
         };
     }
     parser(node) {
+        var _a;
         if (node.tag === 'contact') {
-            assertNodeErrorFree(node);
-            return node?.attrs?.type === 'in';
+            (0, WABinary_1.assertNodeErrorFree)(node);
+            return ((_a = node === null || node === void 0 ? void 0 : node.attrs) === null || _a === void 0 ? void 0 : _a.type) === 'in';
         }
         return false;
     }
 }
-//# sourceMappingURL=USyncContactProtocol.js.map
+exports.USyncContactProtocol = USyncContactProtocol;

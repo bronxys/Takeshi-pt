@@ -1,18 +1,25 @@
-import NodeCache from '@cacheable/node-cache';
-import { randomBytes } from 'crypto';
-import { DEFAULT_CACHE_TTLS } from '../Defaults/index.js';
-import { Curve, signedKeyPair } from './crypto.js';
-import { delay, generateRegistrationId } from './generics.js';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.initAuthCreds = exports.addTransactionCapability = void 0;
+exports.makeCacheableSignalKeyStore = makeCacheableSignalKeyStore;
+const node_cache_1 = __importDefault(require("@cacheable/node-cache"));
+const crypto_1 = require("crypto");
+const Defaults_1 = require("../Defaults");
+const crypto_2 = require("./crypto");
+const generics_1 = require("./generics");
 /**
  * Adds caching capability to a SignalKeyStore
  * @param store the store to add caching to
  * @param logger to log trace events
  * @param _cache cache store to use
  */
-export function makeCacheableSignalKeyStore(store, logger, _cache) {
+function makeCacheableSignalKeyStore(store, logger, _cache) {
     const cache = _cache ||
-        new NodeCache({
-            stdTTL: DEFAULT_CACHE_TTLS.SIGNAL_STORE, // 5 minutes
+        new node_cache_1.default({
+            stdTTL: Defaults_1.DEFAULT_CACHE_TTLS.SIGNAL_STORE, // 5 minutes
             useClones: false,
             deleteOnExpire: true
         });
@@ -33,7 +40,7 @@ export function makeCacheableSignalKeyStore(store, logger, _cache) {
                 }
             }
             if (idsToFetch.length) {
-                logger?.trace({ items: idsToFetch.length }, 'loading from store');
+                logger === null || logger === void 0 ? void 0 : logger.trace({ items: idsToFetch.length }, 'loading from store');
                 const fetched = await store.get(type, idsToFetch);
                 for (const id of idsToFetch) {
                     const item = fetched[id];
@@ -53,12 +60,13 @@ export function makeCacheableSignalKeyStore(store, logger, _cache) {
                     keys += 1;
                 }
             }
-            logger?.trace({ keys }, 'updated cache');
+            logger === null || logger === void 0 ? void 0 : logger.trace({ keys }, 'updated cache');
             await store.set(data);
         },
         async clear() {
+            var _a;
             cache.flushAll();
-            await store.clear?.();
+            await ((_a = store.clear) === null || _a === void 0 ? void 0 : _a.call(store));
         }
     };
 }
@@ -69,7 +77,7 @@ export function makeCacheableSignalKeyStore(store, logger, _cache) {
  * @param logger logger to log events
  * @returns SignalKeyStore with transaction capability
  */
-export const addTransactionCapability = (state, logger, { maxCommitRetries, delayBetweenTriesMs }) => {
+const addTransactionCapability = (state, logger, { maxCommitRetries, delayBetweenTriesMs }) => {
     // number of queries made to the DB during the transaction
     // only there for logging purposes
     let dbQueriesInTransaction = 0;
@@ -89,7 +97,8 @@ export const addTransactionCapability = (state, logger, { maxCommitRetries, dela
                     Object.assign(transactionCache[type], result);
                 }
                 return ids.reduce((dict, id) => {
-                    const value = transactionCache[type]?.[id];
+                    var _a;
+                    const value = (_a = transactionCache[type]) === null || _a === void 0 ? void 0 : _a[id];
                     if (value) {
                         dict[id] = value;
                     }
@@ -103,8 +112,7 @@ export const addTransactionCapability = (state, logger, { maxCommitRetries, dela
         set: data => {
             if (isInTransaction()) {
                 logger.trace({ types: Object.keys(data) }, 'caching in transaction');
-                for (const key_ in data) {
-                    const key = key_;
+                for (const key in data) {
                     transactionCache[key] = transactionCache[key] || {};
                     Object.assign(transactionCache[key], data[key]);
                     mutations[key] = mutations[key] || {};
@@ -141,7 +149,7 @@ export const addTransactionCapability = (state, logger, { maxCommitRetries, dela
                             }
                             catch (error) {
                                 logger.warn(`failed to commit ${Object.keys(mutations).length} mutations, tries left=${tries}`);
-                                await delay(delayBetweenTriesMs);
+                                await (0, generics_1.delay)(delayBetweenTriesMs);
                             }
                         }
                     }
@@ -165,15 +173,16 @@ export const addTransactionCapability = (state, logger, { maxCommitRetries, dela
         return transactionsInProgress > 0;
     }
 };
-export const initAuthCreds = () => {
-    const identityKey = Curve.generateKeyPair();
+exports.addTransactionCapability = addTransactionCapability;
+const initAuthCreds = () => {
+    const identityKey = crypto_2.Curve.generateKeyPair();
     return {
-        noiseKey: Curve.generateKeyPair(),
-        pairingEphemeralKeyPair: Curve.generateKeyPair(),
+        noiseKey: crypto_2.Curve.generateKeyPair(),
+        pairingEphemeralKeyPair: crypto_2.Curve.generateKeyPair(),
         signedIdentityKey: identityKey,
-        signedPreKey: signedKeyPair(identityKey, 1),
-        registrationId: generateRegistrationId(),
-        advSecretKey: randomBytes(32).toString('base64'),
+        signedPreKey: (0, crypto_2.signedKeyPair)(identityKey, 1),
+        registrationId: (0, generics_1.generateRegistrationId)(),
+        advSecretKey: (0, crypto_1.randomBytes)(32).toString('base64'),
         processedHistoryMessages: [],
         nextPreKeyId: 1,
         firstUnuploadedPreKeyId: 1,
@@ -187,4 +196,4 @@ export const initAuthCreds = () => {
         routingInfo: undefined
     };
 };
-//# sourceMappingURL=auth-utils.js.map
+exports.initAuthCreds = initAuthCreds;

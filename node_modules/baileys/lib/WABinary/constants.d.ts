@@ -25,4 +25,3 @@ export declare const TOKEN_MAP: {
         index: number;
     };
 };
-//# sourceMappingURL=constants.d.ts.map

@@ -1,13 +1,17 @@
-import { parseCatalogNode, parseCollectionsNode, parseOrderDetailsNode, parseProductNode, toProductNode, uploadingNecessaryImagesOfProduct } from '../Utils/business.js';
-import { jidNormalizedUser, S_WHATSAPP_NET } from '../WABinary/index.js';
-import { getBinaryNodeChild } from '../WABinary/generic-utils.js';
-import { makeMessagesRecvSocket } from './messages-recv.js';
-export const makeBusinessSocket = (config) => {
-    const sock = makeMessagesRecvSocket(config);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.makeBusinessSocket = void 0;
+const business_1 = require("../Utils/business");
+const WABinary_1 = require("../WABinary");
+const generic_utils_1 = require("../WABinary/generic-utils");
+const messages_recv_1 = require("./messages-recv");
+const makeBusinessSocket = (config) => {
+    const sock = (0, messages_recv_1.makeMessagesRecvSocket)(config);
     const { authState, query, waUploadToServer } = sock;
     const getCatalog = async ({ jid, limit, cursor }) => {
-        jid = jid || authState.creds.me?.id;
-        jid = jidNormalizedUser(jid);
+        var _a;
+        jid = jid || ((_a = authState.creds.me) === null || _a === void 0 ? void 0 : _a.id);
+        jid = (0, WABinary_1.jidNormalizedUser)(jid);
         const queryParamNodes = [
             {
                 tag: 'limit',
@@ -35,7 +39,7 @@ export const makeBusinessSocket = (config) => {
         const result = await query({
             tag: 'iq',
             attrs: {
-                to: S_WHATSAPP_NET,
+                to: WABinary_1.S_WHATSAPP_NET,
                 type: 'get',
                 xmlns: 'w:biz:catalog'
             },
@@ -50,15 +54,16 @@ export const makeBusinessSocket = (config) => {
                 }
             ]
         });
-        return parseCatalogNode(result);
+        return (0, business_1.parseCatalogNode)(result);
     };
     const getCollections = async (jid, limit = 51) => {
-        jid = jid || authState.creds.me?.id;
-        jid = jidNormalizedUser(jid);
+        var _a;
+        jid = jid || ((_a = authState.creds.me) === null || _a === void 0 ? void 0 : _a.id);
+        jid = (0, WABinary_1.jidNormalizedUser)(jid);
         const result = await query({
             tag: 'iq',
             attrs: {
-                to: S_WHATSAPP_NET,
+                to: WABinary_1.S_WHATSAPP_NET,
                 type: 'get',
                 xmlns: 'w:biz:catalog',
                 smax_id: '35'
@@ -94,13 +99,13 @@ export const makeBusinessSocket = (config) => {
                 }
             ]
         });
-        return parseCollectionsNode(result);
+        return (0, business_1.parseCollectionsNode)(result);
     };
     const getOrderDetails = async (orderId, tokenBase64) => {
         const result = await query({
             tag: 'iq',
             attrs: {
-                to: S_WHATSAPP_NET,
+                to: WABinary_1.S_WHATSAPP_NET,
                 type: 'get',
                 xmlns: 'fb:thrift_iq',
                 smax_id: '5'
@@ -138,15 +143,15 @@ export const makeBusinessSocket = (config) => {
                 }
             ]
         });
-        return parseOrderDetailsNode(result);
+        return (0, business_1.parseOrderDetailsNode)(result);
     };
     const productUpdate = async (productId, update) => {
-        update = await uploadingNecessaryImagesOfProduct(update, waUploadToServer);
-        const editNode = toProductNode(productId, update);
+        update = await (0, business_1.uploadingNecessaryImagesOfProduct)(update, waUploadToServer);
+        const editNode = (0, business_1.toProductNode)(productId, update);
         const result = await query({
             tag: 'iq',
             attrs: {
-                to: S_WHATSAPP_NET,
+                to: WABinary_1.S_WHATSAPP_NET,
                 type: 'set',
                 xmlns: 'w:biz:catalog'
             },
@@ -170,19 +175,19 @@ export const makeBusinessSocket = (config) => {
                 }
             ]
         });
-        const productCatalogEditNode = getBinaryNodeChild(result, 'product_catalog_edit');
-        const productNode = getBinaryNodeChild(productCatalogEditNode, 'product');
-        return parseProductNode(productNode);
+        const productCatalogEditNode = (0, generic_utils_1.getBinaryNodeChild)(result, 'product_catalog_edit');
+        const productNode = (0, generic_utils_1.getBinaryNodeChild)(productCatalogEditNode, 'product');
+        return (0, business_1.parseProductNode)(productNode);
     };
     const productCreate = async (create) => {
         // ensure isHidden is defined
         create.isHidden = !!create.isHidden;
-        create = await uploadingNecessaryImagesOfProduct(create, waUploadToServer);
-        const createNode = toProductNode(undefined, create);
+        create = await (0, business_1.uploadingNecessaryImagesOfProduct)(create, waUploadToServer);
+        const createNode = (0, business_1.toProductNode)(undefined, create);
         const result = await query({
             tag: 'iq',
             attrs: {
-                to: S_WHATSAPP_NET,
+                to: WABinary_1.S_WHATSAPP_NET,
                 type: 'set',
                 xmlns: 'w:biz:catalog'
             },
@@ -206,15 +211,15 @@ export const makeBusinessSocket = (config) => {
                 }
             ]
         });
-        const productCatalogAddNode = getBinaryNodeChild(result, 'product_catalog_add');
-        const productNode = getBinaryNodeChild(productCatalogAddNode, 'product');
-        return parseProductNode(productNode);
+        const productCatalogAddNode = (0, generic_utils_1.getBinaryNodeChild)(result, 'product_catalog_add');
+        const productNode = (0, generic_utils_1.getBinaryNodeChild)(productCatalogAddNode, 'product');
+        return (0, business_1.parseProductNode)(productNode);
     };
     const productDelete = async (productIds) => {
         const result = await query({
             tag: 'iq',
             attrs: {
-                to: S_WHATSAPP_NET,
+                to: WABinary_1.S_WHATSAPP_NET,
                 type: 'set',
                 xmlns: 'w:biz:catalog'
             },
@@ -236,9 +241,9 @@ export const makeBusinessSocket = (config) => {
                 }
             ]
         });
-        const productCatalogDelNode = getBinaryNodeChild(result, 'product_catalog_delete');
+        const productCatalogDelNode = (0, generic_utils_1.getBinaryNodeChild)(result, 'product_catalog_delete');
         return {
-            deleted: +(productCatalogDelNode?.attrs.deleted_count || 0)
+            deleted: +((productCatalogDelNode === null || productCatalogDelNode === void 0 ? void 0 : productCatalogDelNode.attrs.deleted_count) || 0)
         };
     };
     return {
@@ -252,4 +257,4 @@ export const makeBusinessSocket = (config) => {
         productUpdate
     };
 };
-//# sourceMappingURL=business.js.map
+exports.makeBusinessSocket = makeBusinessSocket;
