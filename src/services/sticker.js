@@ -42,19 +42,16 @@ export async function addStickerMetadata(media, metadata) {
 }
 
 export async function isAnimatedSticker(filePath) {
-  return new Promise((resolve) => {
-    exec(
-      `ffprobe -v quiet -show_entries format=duration -of csv="p=0" "${filePath}"`,
-      (error, stdout) => {
-        if (error) {
-          resolve(false);
-          return;
-        }
-        const duration = parseFloat(stdout.trim());
-        resolve(duration > 0);
-      }
-    );
-  });
+  try {
+    const buffer = fs.readFileSync(filePath);
+
+    const hasAnim = buffer.includes(Buffer.from("ANIM"));
+    const hasFrame = buffer.includes(Buffer.from("ANMF"));
+
+    return hasAnim || hasFrame;
+  } catch (err) {
+    return false;
+  }
 }
 
 export async function processStaticSticker(inputPath, metadata) {
@@ -112,7 +109,7 @@ export async function processAnimatedSticker(inputPath, metadata) {
 
     img.exif = exif;
 
-    const finalPath = inputPath.replace(".webp", _done.webp);
+    const finalPath = inputPath.replace(".webp", "_done.webp");
     await img.save(finalPath);
 
     return finalPath;
