@@ -5,7 +5,7 @@
  */
 import axios from "axios";
 import FormData from "form-data";
-import { errorLog } from "../utils/logger";
+import { errorLog } from "../utils/logger.js";
 
 export async function upload(imageBuffer, filename) {
   try {
