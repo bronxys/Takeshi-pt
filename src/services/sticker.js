@@ -9,7 +9,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { TEMP_DIR } from "../config.js";
 import { getRandomName, getRandomNumber } from "../utils/index.js";
-import { errorLog } from "../utils/logger.js";
 
 export async function addStickerMetadata(media, metadata) {
   const tmpFileIn = getRandomName("webp");
@@ -43,17 +42,51 @@ export async function addStickerMetadata(media, metadata) {
 }
 
 export async function isAnimatedSticker(filePath) {
-  try {
-    const buffer = fs.readFileSync(filePath);
+  return new Promise((resolve) => {
+    exec(
+      `ffprobe -v quiet -show_entries format=duration -of csv="p=0" "${filePath}"`,
+      (error, stdout) => {
+        if (error) {
+          resolve(false);
+          return;
+        }
+        const duration = parseFloat(stdout.trim());
+        resolve(duration > 0);
+      }
+    );
+  });
+}
 
-    const hasAnim = buffer.includes(Buffer.from("ANIM"));
-    const hasFrame = buffer.includes(Buffer.from("ANMF"));
+export async function processStaticSticker(inputPath, metadata) {
+  return new Promise((resolve, reject) => {
+    const tempOutputPath = path.resolve(TEMP_DIR, getRandomName("webp"));
 
-    return hasAnim || hasFrame;
-  } catch (error) {
-    errorLog("Erro ao verificar se a figurinha é animada:", error);
-    return false;
-  }
+    const cmd = `ffmpeg -i "${inputPath}" -vf "scale=512:512:force_original_aspect_ratio=decrease,pad=512:512:(ow-iw)/2:(oh-ih)/2" -f webp -quality 90 "${tempOutputPath}"`;
+
+    exec(cmd, async (error, _, stderr) => {
+      try {
+        if (error) {
+          console.error("FFmpeg error:", stderr);
+          reject(new Error("Erro ao processar figurinha estática."));
+          return;
+        }
+
+        const processedBuffer = await fs.promises.readFile(tempOutputPath);
+        const finalPath = await addStickerMetadata(processedBuffer, metadata);
+
+        if (fs.existsSync(tempOutputPath)) {
+          fs.unlinkSync(tempOutputPath);
+        }
+
+        resolve(finalPath);
+      } catch (error) {
+        if (fs.existsSync(tempOutputPath)) {
+          fs.unlinkSync(tempOutputPath);
+        }
+        reject(error);
+      }
+    });
+  });
 }
 
 export async function processAnimatedSticker(inputPath, metadata) {
@@ -83,40 +116,8 @@ export async function processAnimatedSticker(inputPath, metadata) {
     await img.save(finalPath);
 
     return finalPath;
-  } catch (error) {
-    errorLog("Erro node-webpmux:", error);
+  } catch (err) {
+    console.log("Erro node-webpmux:", err);
     throw new Error("Erro ao processar sticker animado sem FFmpeg.");
   }
-}
-
-export async function processAnimatedSticker(inputPath, metadata) {
-  return new Promise((resolve, reject) => {
-    const tempOutputPath = path.resolve(TEMP_DIR, getRandomName("webp"));
-
-    const cmd = `ffmpeg -i "${inputPath}" -t 8 -vf "scale=512:512:force_original_aspect_ratio=decrease,pad=512:512:(ow-iw)/2:(oh-ih)/2,fps=15" -c:v libwebp -quality 75 -compression_level 6 -loop 0 -preset default -an -f webp "${tempOutputPath}"`;
-
-    exec(cmd, async (error, _, stderr) => {
-      try {
-        if (error) {
-          console.error("FFmpeg error:", stderr);
-          reject(new Error("Erro ao processar figurinha animada."));
-          return;
-        }
-
-        const processedBuffer = await fs.promises.readFile(tempOutputPath);
-        const finalPath = await addStickerMetadata(processedBuffer, metadata);
-
-        if (fs.existsSync(tempOutputPath)) {
-          fs.unlinkSync(tempOutputPath);
-        }
-
-        resolve(finalPath);
-      } catch (error) {
-        if (fs.existsSync(tempOutputPath)) {
-          fs.unlinkSync(tempOutputPath);
-        }
-        reject(error);
-      }
-    });
-  });
 }
