@@ -1,16 +1,16 @@
 import fs from "node:fs";
 import { PREFIX } from "../../../config.js";
 import { InvalidParameterError } from "../../../errors/index.js";
+import { upload } from "../../../services/linker.js";
 import { canvas } from "../../../services/spider-x-api.js";
-import { upload } from "../../../services/upload.js";
 import { getRandomNumber } from "../../../utils/index.js";
 
 export default {
-  name: "inverter",
+  name: "rip",
   description:
-    "Gero uma montagem com cores invertidas com a imagem que você enviar",
-  commands: ["invert", "inverter"],
-  usage: `${PREFIX}inverter (marque a imagem) ou ${PREFIX}inverter (responda a imagem)`,
+    "Gero uma montagem estilo cova de cemitério com a imagem que você enviar",
+  commands: ["rip"],
+  usage: `${PREFIX}rip (marque a imagem) ou ${PREFIX}rip (responda a imagem)`,
   /**
    * @param {CommandHandleProps} props
    */
@@ -20,6 +20,7 @@ export default {
     sendSuccessReact,
     sendWaitReact,
     sendImageFromURL,
+    sendErrorReply,
     webMessage,
   }) => {
     if (!isImage) {
@@ -42,7 +43,7 @@ export default {
       );
     }
 
-    const url = canvas("invert", link);
+    const url = canvas("rip", link);
 
     const response = await fetch(url);
 
@@ -50,7 +51,7 @@ export default {
       const data = await response.json();
 
       await sendErrorReply(
-        `Ocorreu um erro ao executar uma chamada remota para a Spider X API no comando inverter!
+        `Ocorreu um erro ao executar uma chamada remota para a Spider X API no comando rip!
       
 📄 *Detalhes*: ${data.message}`
       );
