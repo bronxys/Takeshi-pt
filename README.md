@@ -167,7 +167,6 @@ As principais hosts já oferecem o Takeshi como **bot padrão**, não sendo nece
 | [Grupo oficial](https://chat.whatsapp.com/J5OewHvweK1Kf7RGXAwIYM) |
 | [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) |
 
-
 ## Instalação em VPS (Debian/Ubuntu)
 
 1 - Abra um novo terminal e execute os seguintes comandos.
