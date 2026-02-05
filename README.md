@@ -2,7 +2,8 @@
 
 ![Takeshi Bot](./assets/images/takeshi-bot.png)
 
-[![Version](https://img.shields.io/badge/Vers%C3%A3o-7.4.0-blue)](https://github.com/guiireal/takeshi-bot)
+[![Version](https://img.shields.io/badge/Vers%C3%A3o-7.5.0-blue)](https://github.com/guiireal/takeshi-bot)
+[![Tests](https://github.com/guiireal/takeshi-bot-private/actions/workflows/test.yml/badge.svg)](https://github.com/guiireal/takeshi-bot-private/actions/workflows/test.yml)
 
 > Base para bots de WhatsApp multifuncional com diversos comandos prontos.
 
@@ -159,8 +160,8 @@ As principais hosts já oferecem o Takeshi como **bot padrão**, não sendo nece
 
 **Hosts suportadas**:
 
-| Bronxys |
-|---------|
+| Bronxys | Nexfuture | Speed Cloud |
+|---------|-----------|-------------|
 | [Grupo oficial](https://chat.whatsapp.com/J5OewHvweK1Kf7RGXAwIYM) |
 | [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) |
 
@@ -350,6 +351,7 @@ Obtenha sua API Key em: [https://linker.devgui.dev](https://linker.devgui.dev)
 | Modificar o prefixo por grupo | Dono | ❌ |
 | Obter o ID do grupo | Dono | ❌ |
 | Abrir grupo | Admin | ❌ |
+| Advertir | Admin | ❌ |
 | Agendar mensagem | Admin | ❌ |
 | Anti audio | Admin | ❌ |
 | Anti documento | Admin | ❌ |
@@ -360,6 +362,7 @@ Obtenha sua API Key em: [https://linker.devgui.dev](https://linker.devgui.dev)
 | Anti sticker | Admin | ❌ |
 | Anti video | Admin | ❌ |
 | Banir membros | Admin | ❌ |
+| Bloquear número no WhatsApp | Admin | ❌ |
 | Excluir mensagens | Admin | ❌ |
 | Fechar grupo | Admin | ❌ |
 | Gestão de mensagens do auto-responder | Admin | ❌ |
@@ -371,6 +374,8 @@ Obtenha sua API Key em: [https://linker.devgui.dev](https://linker.devgui.dev)
 | Mudar nome do grupo | Admin | ❌ |
 | Mute/unmute | Admin | ❌ |
 | Obter o link do grupo | Admin | ❌ |
+| Reativar advertência | Admin | ❌ |
+| Remover advertência | Admin | ❌ |
 | Revelar | Admin | ❌ |
 | Somente admins | Admin | ❌ |
 | Ver saldo | Admin | ❌ |
@@ -769,6 +774,7 @@ Todos os arquivos de exemplo são armazenados em `assets/samples/`:
   - 📁 errors ➔ _classes de erros usadas nos comandos_
   - 📁 middlewares ➔ _interceptadores de requisições_
   - 📁 services ➔ _serviços diversos_
+  - 📁 test ➔ _testes_
   - 📁 utils ➔ _utilitários_
   - 📝 config.js ➔ _arquivo de configurações do bot_
   - 📝 connection.js ➔ _script de conexão do bot com a biblioteca Baileys_
