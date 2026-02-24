@@ -160,11 +160,10 @@ As principais hosts já oferecem o Takeshi como **bot padrão**, não sendo nece
 
 **Hosts suportadas**:
 
-| Bronxys | Nexfuture | Speed Cloud |
-|---------|-----------|-------------|
+| Bronxys |
+|---------|
 | [Grupo oficial](https://chat.whatsapp.com/J5OewHvweK1Kf7RGXAwIYM) |
 | [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) |
-
 
 ## Instalação em VPS (Debian/Ubuntu)
 
@@ -399,6 +398,7 @@ Obtenha sua API Key em: [https://linker.devgui.dev](https://linker.devgui.dev)
 | Imagem IA Flux | Membro | ✅ |
 | Imagem pixelada | Membro | ❌ |
 | Imagem preto/branco | Membro | ❌ |
+| Informações de um comando | Membro | ❌ |
 | Instagram download | Membro | ✅ |
 | Ping | Membro | ❌ |
 | Play áudio | Membro | ✅ |
@@ -753,7 +753,7 @@ Todos os arquivos de exemplo são armazenados em `assets/samples/`:
 
 ## Estrutura de pastas
 
-- 📁 .github ➔ _workflows de CI/CD e arquivo para o agente copilot_
+- 📁 .github ➔ _workflows de CI/CD e arquivo para o agente do copilot_
 - 📁 assets ➔ _arquivos de mídia_
   - 📁 auth ➔ _arquivos da conexão do bot_
   - 📁 images ➔ _arquivos de imagem_
@@ -785,8 +785,10 @@ Todos os arquivos de exemplo são armazenados em `assets/samples/`:
   - 📝 test.js ➔ _script de testes_
 - 📝 .gitignore ➔ _arquivo para não subir certas pastas no GitHub_
 - 📝 ⚡-cases-estao-aqui.js ➔ _easter egg_
-- 📝 CLAUDE.md ➔ _arquivo de instruções para o Claude Code_
-- 📝 CONTRIBUTING.md ➔ _eguia de contribuição_
+- 📝 AGENTS.md ➔ _arquivo de instruções para IA's_
+- 📝 CLAUDE.md ➔ _arquivo de instruções para a IA Claude_
+- 📝 GEMINI.md ➔ _arquivo de instruções para a IA Gemini_
+- 📝 CONTRIBUTING.md ➔ _guia de contribuição_
 - 📝 LICENSE ➔ _arquivo de licença_
 - 📝 package-lock.json ➔ _arquivo de cache das dependências do bot_
 - 📝 package.json ➔ _arquivo de definição das dependências do bot_
