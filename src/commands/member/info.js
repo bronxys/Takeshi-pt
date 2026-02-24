@@ -43,8 +43,8 @@ export default {
 - *Uso:* _${cmd.default.usage}_
 `;
 
-      await sendReply(info);
       await sendSuccessReact();
+      await sendReply(info);
     } catch (error) {
       throw new WarningError(`Erro ao buscar comando, ${error.message}`);
     }
