@@ -162,7 +162,7 @@ As principais hosts já oferecem o Takeshi como **bot padrão**, não sendo nece
 | Bronxys |
 |---------|
 | [Grupo oficial](https://chat.whatsapp.com/EbouYvvcPiN4owPSdR9gZO) |
-| [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) | 
+| [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) |
 
 ## Instalação em VPS (Debian/Ubuntu)
 
@@ -196,16 +196,16 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 source ~/.bashrc
 ```
 
-6 - Instale a versão 22 mais recente do node.js.
+6 - Instale a versão 24 mais recente do node.js.
 
 ```sh
-nvm install 22
+nvm install 24
 ```
 
 7 - Verifique se a versão foi instalada e está ativa.
 
 ```sh
-node -v # Deve exibir a versão 22
+node -v # Deve exibir a versão 24
 ```
 
 8 - Verifique se o npm foi instalado junto.
