@@ -20,32 +20,32 @@
 
 ## 📋 Sumário
 
-1. [🌐 Idiomas Disponíveis](#-acesse-o-takeshi-bot-em-outros-idiomas)
-2. [⚠️ Atenção](#-atenção)
-3. [📖 Sobre o Projeto](#sobre-este-projeto)
-4. [🚀 Instalação](#instalação-no-termux)
+1. [Idiomas Disponíveis](#-acesse-o-takeshi-bot-em-outros-idiomas)
+2. [Atenção](#-atenção)
+3. [Sobre o Projeto](#sobre-este-projeto)
+4. [Instalação](#instalação-no-termux)
     - [No Termux](#instalação-no-termux)
     - [Nas principais hosts do Brasil](#instalação-nas-principais-hosts-do-brasil)
     - [Em VPS (Debian/Ubuntu)](#instalação-em-vps-debianubuntu)
-5. [📊 Diagrama de conexão](#diagrama-de-conexão)
-6. [⚙️ Alguns comandos necessitam de API](#alguns-comandos-necessitam-de-api)
-7. [🛠️ Funcionalidades](#funcionalidades-gerais)
+5. [Diagrama de conexão](#diagrama-de-conexão)
+6. [Alguns comandos necessitam de API](#alguns-comandos-necessitam-de-api)
+7. [Funcionalidades](#funcionalidades-gerais)
     - [Funcionalidades gerais](#funcionalidades-gerais)
     - [Funcionalidades de envio (Exemplos)](#funcionalidades-de-envio-exemplos)
-8. [🤖 Auto responder](#auto-responder)
-    - [Menu do bot](#onde-fica-o-menu-do-bot)
-    - [Mensagens de boas vindas](#onde-modifico-a-mensagem-de-boas-vindas-e-quando-alguém-sai-do-grupo)
-9. [📊 Diagrama de como os comandos funcionam](#diagrama-de-como-os-comandos-funcionam)
-10. [📊 Diagrama de como funcionam os middlewares](#diagrama-de-como-funcionam-os-middlewares-interceptadores-de-recepção-e-saída)
-11. [💻 Custom Middleware - Personalize o bot sem modificar arquivos principais](#custom-middleware---personalize-o-bot-sem-modificar-arquivos-principais)
-12. [🛠️ Implementação técnica dos exemplos](#implementação-técnica-dos-exemplos)
-13. [📁 Estrutura de pastas](#estrutura-de-pastas)
-14. [🔄 Atualizar o bot](#atualizar-o-bot)
-15. [🧪 Testes](#testes)
-16. [❓ Erros comuns](#erros-comuns)
-17. [📺 Inscreva-se no canal](#inscreva-se-no-canal)
-18. [🤝 Contribuindo com o projeto](#contribuindo-com-o-projeto)
-19. [⚖️ Licença e Disclaimer](#licença)
+8. [Auto responder](#auto-responder)
+9. [Menu do bot](#onde-fica-o-menu-do-bot)
+10. [Mensagens de boas vindas](#onde-modifico-a-mensagem-de-boas-vindas-e-quando-alguém-sai-do-grupo)
+11. [Diagrama de como os comandos funcionam](#diagrama-de-como-os-comandos-funcionam)
+12. [Diagrama de como funcionam os middlewares](#diagrama-de-como-funcionam-os-middlewares-interceptadores-de-recepção-e-saída)
+13. [Custom Middleware - Personalize o bot sem modificar arquivos principais](#custom-middleware---personalize-o-bot-sem-modificar-arquivos-principais)
+14. [Implementação técnica dos exemplos](#implementação-técnica-dos-exemplos)
+15. [Estrutura de pastas](#estrutura-de-pastas)
+16. [Atualizar o bot](#atualizar-o-bot)
+17. [Testes](#testes)
+18. [Erros comuns](#erros-comuns)
+19. [Inscreva-se no canal](#inscreva-se-no-canal)
+20. [Contribuindo com o projeto](#contribuindo-com-o-projeto)
+21. [Licença e Disclaimer](#licença)
 
 ## 🌐 Acesse o Takeshi Bot em outros idiomas
 
@@ -159,10 +159,20 @@ As principais hosts já oferecem o Takeshi como **bot padrão**, não sendo nece
 
 **Hosts suportadas**:
 
-| Bronxys |
-|---------|
-| [Grupo oficial](https://chat.whatsapp.com/EbouYvvcPiN4owPSdR9gZO) |
-| [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) |
+| Bronxys | NexFuture | Speed Cloud |
+|---------|-----------|-------------|
+| [Grupo oficial](https://chat.whatsapp.com/EbouYvvcPiN4owPSdR9gZO) | [Grupo oficial](https://chat.whatsapp.com/Fl5FzZQC00J5CZp07AZVwQ?mode=r_c) | [Grupo oficial](https://chat.whatsapp.com/HsZDn6DJrx34z5lbNbNB2M) |
+| [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) | [![NexFuture](./assets/images/nexfuture.png)](https://nexfuture.com.br/) | [![Speed Cloud](./assets/images/speed-cloud.png)](https://speedhosting.cloud/) |
+
+| TED Host | Nodz Host | Cebolinha Host |
+|----------|-----------|----------------|
+| [Grupo oficial](https://chat.whatsapp.com/DVDE1TCtHrKFatUKrlepjZ) | [Grupo oficial](https://chat.whatsapp.com/I5d5tCyZsV4J7Cjn51IkbV) | [Grupo oficial](https://chat.whatsapp.com/CCf2Pw9guan12orwGg0TqC?mode=gi_t) |
+| [![TED Host](./assets/images/ted-host.png)](https://loja.tedhost.com.br/) | [![Nodz Host](./assets/images/nodz.png)](loja.nodzhostinger.com.br) | [![Cebolinha Host](./assets/images/cebolinha-host.jpeg)](https://chat.whatsapp.com/CCf2Pw9guan12orwGg0TqC?mode=gi_t) |
+
+| Raikken Host | Imperio Cloud | Lotushops |
+|---------|---------------|-----------|
+| [Grupo oficial](https://chat.whatsapp.com/BzSDYUHbjHGF6gQmJfh2C7?mode=gi_t) | [Grupo oficial](https://chat.whatsapp.com/I145pqIkE6HCMlfg7Lw0ix?mode=gi_t) | [Grupo oficial](https://chat.whatsapp.com/G8c680eOmPP0H9BK08OW04?mode=gi_t) |
+| [![Raikken](./assets/images/raikken-host.png)](https://painel.raikken.com.br) | [![Imperio Cloud](./assets/images/imperio-cloud.png)](https://dash.imperiocloud.com.br) | [![Lotushops](./assets/images/lotushops.png)](https://lotushops.com.br) |
 
 ## Instalação em VPS (Debian/Ubuntu)
 
