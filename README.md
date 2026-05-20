@@ -2,7 +2,7 @@
 
 ![Takeshi Bot](./assets/images/takeshi-bot.png)
 
-[![Version](https://img.shields.io/badge/Vers%C3%A3o-8.2.0-blue)](https://github.com/guiireal/takeshi-bot)
+[![Version](https://img.shields.io/badge/Vers%C3%A3o-8.3.0-blue)](https://github.com/guiireal/takeshi-bot)
 [![Tests](https://github.com/guiireal/takeshi-bot-private/actions/workflows/test.yml/badge.svg)](https://github.com/guiireal/takeshi-bot-private/actions/workflows/test.yml)
 
 > Base para bots de WhatsApp multifuncional com diversos comandos prontos.
@@ -163,7 +163,6 @@ As principais hosts já oferecem o Takeshi como **bot padrão**, não sendo nece
 |---------|
 | [Grupo oficial](https://chat.whatsapp.com/EbouYvvcPiN4owPSdR9gZO) |
 | [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) |
-
 
 ## Instalação em VPS (Debian/Ubuntu)
 
@@ -383,6 +382,7 @@ Obtenha sua API Key em: [https://linker.devgui.dev](https://linker.devgui.dev)
 | Ver saldo da Spider X API | Admin | ❌ |
 | Borrar imagem | Membro | ❌ |
 | Brat (imagem com texto) | Membro | ✅ |
+| Bratvid (Figurinha animada no estilo brat) | Membro | ✅ |
 | Busca CEP | Membro | ❌ |
 | Canvas Bolsonaro | Membro | ✅ |
 | Canvas cadeia | Membro | ✅ |
