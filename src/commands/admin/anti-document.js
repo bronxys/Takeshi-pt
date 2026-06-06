@@ -4,6 +4,7 @@ import {
   isActiveGroupRestriction,
   updateIsActiveGroupRestriction,
 } from "../../utils/database.js";
+import { isFalse, isTrue } from "../../utils/index.js";
 
 export default {
   name: "anti-document",
@@ -20,14 +21,14 @@ export default {
     }
     if (!args.length) {
       throw new InvalidParameterError(
-        "Você precisa digitar 1 ou 0 (ligar ou desligar)!"
+        "Você precisa digitar 1 ou 0 (ligar ou desligar)!",
       );
     }
-    const antiDocumentOn = args[0] == "1";
-    const antiDocumentOff = args[0] == "0";
+    const antiDocumentOn = isTrue(args[0]);
+    const antiDocumentOff = isFalse(args[0]);
     if (!antiDocumentOn && !antiDocumentOff) {
       throw new InvalidParameterError(
-        "Você precisa digitar 1 ou 0 (ligar ou desligar)!"
+        "Você precisa digitar 1 ou 0 (ligar ou desligar)!",
       );
     }
     const hasActive =
@@ -38,7 +39,7 @@ export default {
       throw new WarningError(
         `O recurso de anti-document já está ${
           antiDocumentOn ? "ativado" : "desativado"
-        }!`
+        }!`,
       );
     }
     updateIsActiveGroupRestriction(remoteJid, "anti-document", antiDocumentOn);
