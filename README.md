@@ -162,7 +162,7 @@ As principais hosts já oferecem o Takeshi como **bot padrão**, não sendo nece
 
 | Bronxys |
 |---------|
-| [Grupo oficial](https://chat.whatsapp.com/EbouYvvcPiN4owPSdR9gZO) |
+| [Grupo oficial](https://chat.whatsapp.com/HWeFfnUNR2mBGEw3F9GF5G) |
 | [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) |
 
 ## Instalação no Windows
@@ -171,22 +171,20 @@ As principais hosts já oferecem o Takeshi como **bot padrão**, não sendo nece
 
 Clique com o botão direito no menu iniciar, escolha `Terminal (Admin)` ou `Windows PowerShell (Admin)`.
 
-2 - Instale o Git, Node.js 24 e FFmpeg.
+2 - Instale o Git, Node.js 24.x.x ou superior e FFmpeg.
 
-Se você usa Windows 10 ou Windows 11 com `winget`, instale o Git e o FFmpeg com:
+Se você usa Windows 10 ou Windows 11 com `winget`, execute:
 
 ```sh
 winget install --id Git.Git -e
+winget install --id OpenJS.NodeJS -e
 winget install --id Gyan.FFmpeg -e
 ```
 
-Para o Node.js, instale manualmente a versão 24.x pelo instalador oficial:
-
-- Node.js 24: [https://nodejs.org/en](https://nodejs.org/en)
-
-Se algum item acima não funcionar, instale manualmente:
+Se algum comando acima não funcionar, instale manualmente:
 
 - Git: [https://git-scm.com/downloads/win](https://git-scm.com/downloads/win)
+- Node.js 22.8 ou superior: [https://nodejs.org/en](https://nodejs.org/en)
 - FFmpeg: [https://ffmpeg.org/download.html](https://ffmpeg.org/download.html)
 
 3 - Feche e abra o PowerShell novamente para atualizar o PATH.
@@ -995,3 +993,4 @@ Esta licença garante que todos tenham acesso ao código-fonte e podem colaborar
 ## ⚠ Disclaimer
 
 Neste projeto, precisei hospedar a node_modules, para auxiliar quem está rodando o bot pelo celular, pois muitos deles podem não rodar o `npm install` pelo termux corretamente.
+s
