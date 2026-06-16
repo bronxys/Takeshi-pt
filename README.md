@@ -26,6 +26,7 @@
 4. [Instalação](#instalação-no-termux)
     - [No Termux](#instalação-no-termux)
     - [Nas principais hosts do Brasil](#instalação-nas-principais-hosts-do-brasil)
+    - [No Windows](#instalação-no-windows)
     - [Em VPS (Debian/Ubuntu)](#instalação-em-vps-debianubuntu)
 5. [Diagrama de conexão](#diagrama-de-conexão)
 6. [Alguns comandos necessitam de API](#alguns-comandos-necessitam-de-api)
@@ -163,6 +164,94 @@ As principais hosts já oferecem o Takeshi como **bot padrão**, não sendo nece
 |---------|
 | [Grupo oficial](https://chat.whatsapp.com/EbouYvvcPiN4owPSdR9gZO) |
 | [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) |
+
+## Instalação no Windows
+
+1 - Abra o PowerShell como administrador.
+
+Clique com o botão direito no menu iniciar, escolha `Terminal (Admin)` ou `Windows PowerShell (Admin)`.
+
+2 - Instale o Git, Node.js 24 e FFmpeg.
+
+Se você usa Windows 10 ou Windows 11 com `winget`, instale o Git e o FFmpeg com:
+
+```sh
+winget install --id Git.Git -e
+winget install --id Gyan.FFmpeg -e
+```
+
+Para o Node.js, instale manualmente a versão 24.x pelo instalador oficial:
+
+- Node.js 24: [https://nodejs.org/en](https://nodejs.org/en)
+
+Se algum item acima não funcionar, instale manualmente:
+
+- Git: [https://git-scm.com/downloads/win](https://git-scm.com/downloads/win)
+- FFmpeg: [https://ffmpeg.org/download.html](https://ffmpeg.org/download.html)
+
+3 - Feche e abra o PowerShell novamente para atualizar o PATH.
+
+4 - Verifique se o Node.js, npm, Git e FFmpeg foram instalados.
+
+```sh
+node -v
+npm -v
+git --version
+ffmpeg -version
+```
+
+O comando `node -v` deve exibir uma versão `v24.x.x`.
+
+5 - Escolha uma pasta para colocar os arquivos do bot.
+
+No exemplo abaixo, vamos usar a Área de Trabalho:
+
+```sh
+cd $env:USERPROFILE\Desktop
+```
+
+6 - Clone o repositório.
+
+```sh
+git clone https://github.com/guiireal/takeshi-bot.git
+```
+
+7 - Entre na pasta clonada.
+
+```sh
+cd takeshi-bot
+```
+
+8 - Instale as dependências.
+
+```sh
+npm install
+```
+
+9 - Execute o bot.
+
+```sh
+npm start
+```
+
+10 - O bot vai solicitar que você digite seu número de telefone.
+Digite **exatamente** como está no WhatsApp e apenas números.
+
+Não adicione o 9º dígito em números que não sejam de SP ou RJ.
+
+11 - Informe o código de pareamento no WhatsApp.
+
+No WhatsApp, vá em `dispositivos conectados`, clique em `conectar dispositivo` e depois em `Conectar com número de telefone`.
+
+12 - Aguarde a conexão e digite `CTRL + C` no PowerShell para parar o bot.
+
+Depois, configure o arquivo `config.js` que está dentro da pasta `src`.
+
+13 - Inicie o bot novamente.
+
+```sh
+npm start
+```
 
 ## Instalação em VPS (Debian/Ubuntu)
 
