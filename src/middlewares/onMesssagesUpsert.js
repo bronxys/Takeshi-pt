@@ -17,6 +17,7 @@ import {
 import { loadCommonFunctions } from "../utils/loadCommonFunctions.js";
 import { errorLog, infoLog } from "../utils/logger.js";
 import { customMiddleware } from "./customMiddleware.js";
+import { handleAfkReferences } from "./afkHandler.js";
 import { messageHandler } from "./messageHandler.js";
 import { recordMessageEnvelope } from "../utils/messageEnvelopeRegistry.js";
 import { hasPaymentMessage } from "../utils/paymentMessage.js";
@@ -118,6 +119,8 @@ export async function onMessagesUpsert({ socket, messages, startProcess }) {
         type: "message",
         commonFunctions,
       });
+
+      await handleAfkReferences({ webMessage, commonFunctions });
 
       await dynamicCommand(commonFunctions, startProcess);
     } catch (error) {
