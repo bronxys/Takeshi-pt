@@ -1,11 +1,21 @@
 /**
- * Mensagens de pagamento (requestPayment etc.) frequentemente não saem com
- * o delete admin normal. O fluxo cria uma mensagem auxiliar, força um edit
- * com o ID da payment e só então revoga o payload original.
+ * Mensagens de pagamento (requestPayment etc.) frequentemente NÃO saem com o
+ * revoke admin puro — o WhatsApp ignora silenciosamente. Por isso o fluxo é uma
+ * gambiarra de duas camadas, e a prioridade é NUNCA deixar o conteúdo do
+ * pagamento visível pra todos:
+ *
+ *   1. Sobrescrita: envia um "edit" cujo ID de stanza colide com o ID do
+ *      pagamento, trocando o conteúdo exibido por "Mensagem de pagamento
+ *      removida". Mesmo que o revoke seja ignorado, o valor/cobrança some da tela.
+ *   2. Revoke real: dispara o REVOKE nativo. Se o WhatsApp aceitar, a mensagem é
+ *      apagada para todos de vez.
+ *
+ * A mensagem auxiliar (dummy) só existe para ancorar o edit e é limpa no fim.
  *
  * @author Dev Gui
  */
 import { delay } from "baileys";
+import { BOT_EMOJI } from "../config.js";
 import { errorLog } from "./logger.js";
 
 /**
@@ -38,7 +48,7 @@ export async function deletePaymentMessage({
 
   try {
     const dummyMessage = await socket.sendMessage(remoteJid, {
-      text: "\u200B",
+      text: "​",
     });
     const dummyMessageId = dummyMessage?.key?.id;
 
@@ -49,7 +59,7 @@ export async function deletePaymentMessage({
     await socket.sendMessage(
       remoteJid,
       {
-        text: "Mensagem de pagamento removida",
+        text: `${BOT_EMOJI} Mensagem de pagamento removida!`,
         edit: {
           remoteJid,
           fromMe: true,
@@ -111,7 +121,8 @@ export async function deletePaymentMessage({
 }
 
 /**
- * Tenta o fluxo especial de payment e, se falhar, cai no delete admin normal.
+ * Tenta o fluxo especial de payment e, se falhar, cai no revoke admin normal —
+ * garantindo pelo menos a tentativa de apagar para todos.
  *
  * @param {{
  *   socket: import("baileys").WASocket,
@@ -135,7 +146,7 @@ export async function deletePaymentMessageWithFallback({
     await deletePaymentMessage({ socket, remoteJid, messageKey, settleMs });
   } catch (error) {
     errorLog(
-      `[payment-delete] Fallback para delete normal. Detalhes: ${
+      `[payment-delete] Fallback para revoke normal. Detalhes: ${
         error?.message || error
       }`,
     );
