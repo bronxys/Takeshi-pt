@@ -135,12 +135,12 @@ export const BOT_EMOJI = "🤖";
 // Nome do bot (mude se preferir).
 export const BOT_NAME = "Takeshi Bot";
 
-// LID do bot.
+// LID do bot (no caso, o que você rodará o bot).
 // Para obter o LID do bot, use o comando <prefixo>lid respondendo em cima de uma mensagem do número do bot
 // Troque o <prefixo> pelo prefixo do bot (ex: /lid).
 export const BOT_LID = "12345678901234567890@lid";
 
-// LID do dono do bot.
+// LID do dono do bot (no caso, o seu!).
 // Para obter o LID do dono do bot, use o comando <prefixo>meu-lid
 // Troque o <prefixo> pelo prefixo do bot (ex: /meu-lid).
 export const OWNER_LID = "12345678901234567890@lid";
@@ -439,8 +439,8 @@ Obtenha sua API Key em: [https://linker.devgui.dev](https://linker.devgui.dev)
 | Anti audio | Admin | ❌ |
 | Anti documento | Admin | ❌ |
 | Anti evento | Admin | ❌ |
-| Anti imagem | Admin | ❌ |
 | Anti ligação | Admin | ❌ |
+| Anti imagem | Admin | ❌ |
 | Anti link | Admin | ❌ |
 | Anti lottie sticker | Admin | ❌ |
 | Anti pagamento | Admin | ❌ |
@@ -772,4 +772,3 @@ Esta licença garante que todos tenham acesso ao código-fonte e podem colaborar
 ## ⚠ Disclaimer
 
 Neste projeto, precisei hospedar a node_modules, para auxiliar quem está rodando o bot pelo celular, pois muitos deles podem não rodar o `npm install` pelo termux corretamente.
-s
