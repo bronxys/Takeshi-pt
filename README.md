@@ -508,6 +508,7 @@ Obtenha sua API Key em: [https://linker.devgui.dev](https://linker.devgui.dev)
 | TikTok video download | Membro | ✅ |
 | Transcrever áudio | Membro | ✅ |
 | TTS (texto para áudio) | Membro | ✅ |
+| X/Twitter download | Membro | ✅ |
 | YT MP3 | Membro | ✅ |
 | YT MP4 | Membro | ✅ |
 | YT search | Membro | ✅ |
