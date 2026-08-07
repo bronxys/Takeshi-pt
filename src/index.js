@@ -72,14 +72,12 @@
  * Não modifique nada abaixo, a não ser que saiba o que está fazendo!
  */
 import { connect } from "./connection.js";
-import { load } from "./loader.js";
 import { badMacHandler } from "./utils/badMacHandler.js";
 import {
   bannerLog,
   errorLog,
   infoLog,
   installConsoleNoiseFilter,
-  successLog,
   warningLog,
 } from "./utils/logger.js";
 
@@ -119,21 +117,17 @@ async function startBot() {
     const stats = badMacHandler.getStats();
     if (stats.errorCount > 0) {
       warningLog(
-        `BadMacHandler stats: ${stats.errorCount}/${stats.maxRetries} erros`
+        `BadMacHandler stats: ${stats.errorCount}/${stats.maxRetries} erros`,
       );
     }
 
-    const socket = await connect();
-
-    load(socket);
-
-    successLog("✅ Bot iniciado com sucesso!");
+    await connect();
 
     setInterval(() => {
       const currentStats = badMacHandler.getStats();
       if (currentStats.errorCount > 0) {
         warningLog(
-          `BadMacHandler stats: ${currentStats.errorCount}/${currentStats.maxRetries} erros`
+          `BadMacHandler stats: ${currentStats.errorCount}/${currentStats.maxRetries} erros`,
         );
       }
     }, 300_000);
