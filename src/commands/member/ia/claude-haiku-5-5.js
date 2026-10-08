@@ -4,7 +4,7 @@ import { claudeHaiku55 } from "../../../services/spider-x-api.js";
 
 export default {
   name: "claude-haiku-5-5",
-  description: "Use a inteligência artificial Claude Haiku 5.5! (2 requests)",
+  description: "Use a inteligência artificial Claude Haiku 5.5!",
   commands: ["claude", "haiku", "claudehaiku"],
   usage: `${PREFIX}claude Analise os benefícios de uma arquitetura modular`,
   /**
