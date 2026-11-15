@@ -620,7 +620,7 @@ Prioridade de leitura: valor em `database/config.json` → fallback de `src/conf
 | Geração de imagens com IA | Membro | ✅ |
 | Google Gemini | Membro | ✅ |
 | Google search | Membro | ✅ |
-| Horóscopo semanal | Membro | ✅ |
+| Horóscopo semanal (`horoscopo`) | Membro | ✅ |
 | Imagem IA Flux | Membro | ✅ |
 | Imagem IA Recraft V4.1 Flash | Membro | ✅ |
 | Imagem com contraste | Membro | ❌ |
@@ -645,7 +645,8 @@ Prioridade de leitura: valor em `database/config.json` → fallback de `src/conf
 | TikTok video download | Membro | ✅ |
 | Transcrever áudio | Membro | ✅ |
 | TTS (texto para áudio) | Membro | ✅ |
-| Vozes especiais (Lula e Bolsonaro) | Membro | ✅ |
+| Voz do Bolsonaro (`vozbolsonaro`) | Membro | ✅ |
+| Voz do Lula (`vozlula`) | Membro | ✅ |
 | X/Twitter download | Membro | ✅ |
 | YT MP3 | Membro | ✅ |
 | YT MP4 | Membro | ✅ |
@@ -665,8 +666,8 @@ Use o prefixo configurado no seu grupo.
 
 | Exemplo | Aliases |
 | --- | --- |
-| `/vozlula Olá, tudo bem?` | `/lulavoz`, `/voicelula`, `/lulavoice` |
 | `/vozbolsonaro Bom dia, pessoal!` | `/bolsonarovoz`, `/voicebolsonaro`, `/bolsonarovoice` |
+| `/vozlula Olá, tudo bem?` | `/lulavoz`, `/voicelula`, `/lulavoice` |
 
 ## Auto responder
 
